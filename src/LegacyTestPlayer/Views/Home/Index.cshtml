@@ -1,0 +1,17 @@
+@{
+    ViewData["Title"] = "Practice Check";
+}
+
+<h1>Practice Check</h1>
+<p>Ten questions, in a fixed order. You will see a score at the end.</p>
+
+@if (TempData["Error"] is string error)
+{
+    <p class="error">@error</p>
+}
+
+<form method="post" action="/Practice/Start">
+    <label for="studentName">Your name</label>
+    <input id="studentName" name="studentName" type="text" maxlength="80" required />
+    <button type="submit">Start</button>
+</form>

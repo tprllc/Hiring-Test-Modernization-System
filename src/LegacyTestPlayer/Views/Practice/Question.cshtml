@@ -1,0 +1,25 @@
+@model QuestionViewModel
+
+<p class="meta">Question @Model.Number of @Model.Total · @Model.Skill · difficulty @Model.Difficulty</p>
+<h1>@Model.Stem</h1>
+
+@if (!string.IsNullOrEmpty(Model.Error))
+{
+    <p class="error">@Model.Error</p>
+}
+
+<form method="post" action="/Practice/Answer">
+    <input type="hidden" name="attemptId" value="@Model.AttemptId" />
+    <input type="hidden" name="questionId" value="@Model.QuestionId" />
+    <fieldset>
+        <legend>Choose one answer</legend>
+        @foreach (var choice in Model.Choices)
+        {
+            <label class="choice">
+                <input type="radio" name="choice" value="@choice.Letter" />
+                <span>@choice.Letter. @choice.Text</span>
+            </label>
+        }
+    </fieldset>
+    <button type="submit">Submit</button>
+</form>

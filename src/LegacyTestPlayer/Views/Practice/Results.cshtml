@@ -1,0 +1,31 @@
+@model ResultsViewModel
+
+<h1>Results for @Model.StudentName</h1>
+<p class="score">@Model.Correct of @Model.Total correct</p>
+
+@if (Model.Skills.Count == 0)
+{
+    <p>No answers were recorded.</p>
+}
+else
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Skill</th>
+                <th>Correct</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var skill in Model.Skills)
+            {
+                <tr>
+                    <td>@skill.Skill</td>
+                    <td>@skill.Correct of @skill.Total</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+<p><a href="/">Start another practice</a></p>
